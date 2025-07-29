@@ -104,6 +104,12 @@
             font-weight: bold;
             color: white;
         }
+        /* ALTERAÇÃO APLICADA AQUI */
+        .heatmap-table td:first-child {
+            background-color: #eef7fa; /* Fundo azul claro */
+            color: #333; /* Cor da fonte escura para legibilidade */
+            text-align: left; /* Alinha o nome do grupo à esquerda */
+        }
         /* Container para os gráficos para garantir responsividade */
         .chart-container {
             position: relative;
@@ -135,7 +141,7 @@
             <p>Esta análise consolida os resultados de entrevistas individuais de acompanhamento, oferecendo um diagnóstico aprofundado da percepção dos colaboradores sobre a empresa.</p>
             <ul>
                 <li><strong>Quem:</strong> Mais de 50 colaboradores entrevistados.</li>
-                <li><strong>Onde:</strong> Abrangendo 11 setores, incluindo as bases de Operação (São Cristóvão), Operação Açu e Operação Rio das Ostras.</li>
+                <li><strong>Onde:</strong> Abrangendo 11 grupos de setores, incluindo as bases de Operação (São Cristóvão), Operação Açu e Operação Rio das Ostras.</li>
                 <li><strong>Como:</strong> Análise quantitativa (notas de 1 a 10) e qualitativa (análise de centenas de comentários e sugestões).</li>
             </ul>
         </section>
@@ -162,7 +168,7 @@
             </div>
 
             <h3>Ponto Crítico #1: A Crise de Confiança</h3>
-            <p>A confiança na palavra da gestão é o pilar mais abalado. Problemas recorrentes com pagamentos e acordos não cumpridos geram desmotivação e um sentimento de injustiça.</p>
+            <p>A confiança na palavra da gestão é o pilar mais abalado. Problemas recorrentes com promessas de crescimento/melhoria de salário/bonificação e acordos não cumpridos geram desmotivação e um sentimento de injustiça.</p>
             <ul>
                 <li><strong>Promessas não Cumpridas:</strong> Múltiplos relatos de acordos verbais sobre aumento salarial, bônus e pagamento de cursos (T-HUET) que não foram honrados.</li>
                 <li><strong>A Política do Vale-Alimentação:</strong> A queixa mais universal. O corte do benefício durante o período de embarque é visto como uma penalidade.</li>
@@ -191,19 +197,19 @@
             <h2>Módulo 2: Ferramenta de Análise (Para Gestores)</h2>
             
             <h3>Panorama Geral: Ranking de Satisfação</h3>
-            <p>Como cada setor avalia a empresa como um "Bom Lugar para se Trabalhar"?</p>
+            <p>Como cada grupo de setores avalia a empresa como um "Bom Lugar para se Trabalhar"?</p>
             <div class="chart-container">
                 <canvas id="satisfactionChart"></canvas>
             </div>
 
-            <h3>Mapa de Calor: Pontos Fortes e Fracos por Setor</h3>
+            <h3>Mapa de Calor: Pontos Fortes e Fracos por Grupo</h3>
             <p>Diagnóstico comparativo por tema. Células em <span style="background-color: #d1495b; color: white; padding: 2px 5px; border-radius: 3px;">vermelho</span> indicam pontos críticos (nota < 6), <span style="background-color: #edae49; color: white; padding: 2px 5px; border-radius: 3px;">amarelo</span> indicam pontos de atenção (nota 6-7.9), e <span style="background-color: #66a182; color: white; padding: 2px 5px; border-radius: 3px;">verde</span> indicam pontos fortes (nota >= 8).</p>
             <div style="overflow-x:auto;">
                 <div id="heatmapContainer"></div>
             </div>
             
             <h3>Deep Dive: Liderança vs. Comunicação</h3>
-            <p>Comparativo das médias de Liderança ("Relação com o Chefe") e Comunicação ("Comunicação Interna") por setor, evidenciando o principal ponto forte e o principal ponto fraco da empresa.</p>
+            <p>Comparativo das médias de Liderança ("Relação com o Chefe") e Comunicação ("Comunicação Interna") por grupo, evidenciando o principal ponto forte e o principal ponto fraco da empresa.</p>
             <div class="chart-container">
                 <canvas id="leadershipVsCommsChart"></canvas>
             </div>
@@ -268,8 +274,12 @@
             });
         }
     
-        // Dados consolidados para os gráficos
-        const sectors = ['RH', 'Engenharia', 'Comercial', 'QSMS', 'Op. Açu', 'Finan.', 'Op. R. Ostras', 'Almox.', 'BI', 'Compras', 'Operações'];
+        // Dados consolidados e anonimizados para os gráficos
+        const sectors = [
+            'Administrativo 1', 'Administrativo 2', 'Administrativo 3', 'Administrativo 4', 
+            'Operacional 1', 'Administrativo 5', 'Operacional 2', 'Administrativo 6', 
+            'Administrativo 7', 'Administrativo 8', 'Operacional 3'
+        ];
 
         // GRÁFICO 1: Ranking de Satisfação (Módulo 2)
         const satisfactionData = {
@@ -291,25 +301,25 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 scales: { x: { beginAtZero: true, max: 10 } },
-                plugins: { legend: { display: false }, title: { display: true, text: 'Satisfação Geral por Setor (Média de 1 a 10)' } }
+                plugins: { legend: { display: false }, title: { display: true, text: 'Satisfação Geral por Grupo (Média de 1 a 10)' } }
             }
         });
 
         // TABELA HEATMAP: (Módulo 2)
         const heatmapData = {
-            headers: ["Setor", "Satisfação", "Clima", "Respeito", "Liderança", "Apoio", "Crescimento", "Reconhec.", "Comunicação", "Metas"],
+            headers: ["Grupo", "Satisfação", "Clima", "Respeito", "Liderança", "Apoio", "Crescimento", "Reconhec.", "Comunicação", "Metas"],
             rows: [
-                { sector: 'RH', values: [6.0, 7.5, 7.0, 9.5, 9.0, 7.0, 6.0, 2.0, 1.5] },
-                { sector: 'Engenharia', values: [8.3, 8.8, 8.8, 9.5, 9.2, 6.0, 8.4, 5.7, 7.5] },
-                { sector: 'Comercial', values: [7.3, 7.3, 7.3, 9.0, 9.7, 4.0, 5.7, 4.7, 6.0] },
-                { sector: 'QSMS', values: [6.0, 8.0, 9.0, 10.0, 5.0, 1.0, 7.0, 10.0, 7.0] },
-                { sector: 'Op. Açu', values: [8.5, 9.0, 8.5, 9.2, 6.2, 8.2, 8.8, 4.2, 7.4] },
-                { sector: 'Financeiro', values: [8.0, 8.0, 7.0, 8.0, 8.0, 5.0, 5.0, 5.0, 5.0] },
-                { sector: 'Op. R. Ostras', values: [7.5, 8.0, 7.5, 8.0, 5.5, 8.0, 7.5, 5.5, 7.0] },
-                { sector: 'Almoxarife', values: [5.0, 3.0, 8.0, 5.0, 8.0, 7.0, 5.0, 3.0, 3.0] },
-                { sector: 'BI', values: [8.0, 10.0, 10.0, 10.0, 9.0, 5.0, 10.0, 3.0, 6.0] },
-                { sector: 'Compras', values: [8.0, 8.5, 8.5, 9.5, 9.5, 8.5, 7.0, 5.0, 4.5] },
-                { sector: 'Operações', values: [7.1, 6.2, 6.8, 8.4, 7.5, 6.1, 7.8, 5.0, 5.2] }
+                { sector: 'Administrativo 1', values: [6.0, 7.5, 7.0, 9.5, 9.0, 7.0, 6.0, 2.0, 1.5] },
+                { sector: 'Administrativo 2', values: [8.3, 8.8, 8.8, 9.5, 9.2, 6.0, 8.4, 5.7, 7.5] },
+                { sector: 'Administrativo 3', values: [7.3, 7.3, 7.3, 9.0, 9.7, 4.0, 5.7, 4.7, 6.0] },
+                { sector: 'Administrativo 4', values: [6.0, 8.0, 9.0, 10.0, 5.0, 1.0, 7.0, 10.0, 7.0] },
+                { sector: 'Operacional 1', values: [8.5, 9.0, 8.5, 9.2, 6.2, 8.2, 8.8, 4.2, 7.4] },
+                { sector: 'Administrativo 5', values: [8.0, 8.0, 7.0, 8.0, 8.0, 5.0, 5.0, 5.0, 5.0] },
+                { sector: 'Operacional 2', values: [7.5, 8.0, 7.5, 8.0, 5.5, 8.0, 7.5, 5.5, 7.0] },
+                { sector: 'Administrativo 6', values: [5.0, 3.0, 8.0, 5.0, 8.0, 7.0, 5.0, 3.0, 3.0] },
+                { sector: 'Administrativo 7', values: [8.0, 10.0, 10.0, 10.0, 9.0, 5.0, 10.0, 3.0, 6.0] },
+                { sector: 'Administrativo 8', values: [8.0, 8.5, 8.5, 9.5, 9.5, 8.5, 7.0, 5.0, 4.5] },
+                { sector: 'Operacional 3', values: [7.1, 6.2, 6.8, 8.4, 7.5, 6.1, 7.8, 5.0, 5.2] }
             ]
         };
         
@@ -346,7 +356,7 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 scales: { y: { beginAtZero: true, max: 10 } },
-                plugins: { title: { display: true, text: 'Comparativo: Liderança vs. Comunicação por Setor' } }
+                plugins: { title: { display: true, text: 'Comparativo: Liderança vs. Comunicação por Grupo' } }
             }
         });
     </script>
