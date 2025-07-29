@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico Organizacional - Supply Marine</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Estilos gerais do corpo da página */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        /* Container principal para centralizar o conteúdo */
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            overflow: auto;
+            padding: 0 2rem;
+        }
+        /* Estilo do cabeçalho principal */
+        header {
+            background: #00405c; /* Azul escuro corporativo */
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+            border-bottom: 5px solid #0077b6; /* Azul mais claro para destaque */
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        header p {
+            font-size: 1.2rem;
+        }
+        /* Estilo padrão para as seções do relatório */
+        section {
+            background: #fff;
+            margin: 1.5rem 0;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        /* Estilo para os títulos de seção (H2) */
+        h2 {
+            color: #00405c;
+            border-bottom: 2px solid #005a80;
+            padding-bottom: 0.5rem;
+            font-size: 2rem;
+        }
+        /* Estilo para os subtítulos (H3) */
+        h3 {
+            color: #005a80;
+            margin-top: 2rem;
+            font-size: 1.5rem;
+        }
+        /* Grid para o layout do paradoxo (lado a lado) */
+        .paradox-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsivo */
+            gap: 2rem;
+        }
+        .paradox-box {
+            padding: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .paradox-box h4 {
+            margin-top: 0;
+            color: #00405c;
+        }
+        /* Estilo para citações destacadas */
+        blockquote {
+            font-style: italic;
+            border-left: 5px solid #0077b6;
+            padding-left: 1rem;
+            margin: 1rem 0;
+            background-color: #eef7fa;
+        }
+        /* Estilos para a tabela de mapa de calor */
+        .heatmap-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+            margin-top: 1rem;
+        }
+        .heatmap-table th, .heatmap-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        .heatmap-table th {
+            background-color: #00405c;
+            color: white;
+            position: sticky; /* Cabeçalho fixo na rolagem horizontal */
+            top: 0;
+        }
+        .heatmap-table td {
+            font-weight: bold;
+            color: white;
+        }
+        /* Container para os gráficos para garantir responsividade */
+        .chart-container {
+            position: relative;
+            height: 450px;
+            width: 100%;
+            margin-top: 1.5rem;
+        }
+        /* Estilo do rodapé */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Diagnóstico Organizacional e Plano de Ação</h1>
+        <p>Supply Marine - Pesquisa de Acompanhamento 2025</p>
+    </header>
+
+    <div class="container">
+
+        <!-- Módulo 0: Abertura e Metodologia -->
+        <section>
+            <h2>Módulo 0: Abertura e Metodologia</h2>
+            <p>Esta análise consolida os resultados de entrevistas individuais de acompanhamento, oferecendo um diagnóstico aprofundado da percepção dos colaboradores sobre a empresa.</p>
+            <ul>
+                <li><strong>Quem:</strong> Mais de 50 colaboradores entrevistados.</li>
+                <li><strong>Onde:</strong> Abrangendo 11 setores, incluindo as bases de Operação (São Cristóvão), Operação Açu e Operação Rio das Ostras.</li>
+                <li><strong>Como:</strong> Análise quantitativa (notas de 1 a 10) e qualitativa (análise de centenas de comentários e sugestões).</li>
+            </ul>
+        </section>
+
+        <!-- Módulo 1: Diagnóstico Estratégico (Para a Diretoria) -->
+        <section>
+            <h2>Módulo 1: Diagnóstico Estratégico (Para a Diretoria)</h2>
+
+            <h3>O Paradoxo Central: As "Duas Supply Marines"</h3>
+            <p>A pesquisa revela que a empresa opera com uma dualidade cultural. Dependendo do perfil e do tempo de casa do colaborador, a experiência é drasticamente diferente.</p>
+            <div class="paradox-container">
+                <div class="paradox-box">
+                    <h4>A "Grande Escola"</h4>
+                    <p>Para colaboradores novos, a empresa é vista como um lugar de imenso aprendizado prático e com equipes unidas na ponta.</p>
+                    <blockquote>"Grande escola para aprendizado. Ótimo para quem está em início de carreira".</blockquote>
+                    <blockquote>"A empresa fornece oportunidade para conhecer o ambiente offshore".</blockquote>
+                </div>
+                <div class="paradox-box">
+                    <h4>A "Armadilha de Estagnação"</h4>
+                    <p>Para profissionais experientes e antigos, é um ambiente frustrante, desorganizado e com pouca perspectiva de futuro.</p>
+                    <blockquote>"Quem dá o sangue pela empresa não é valorizado, depois volta um ex-funcionário que saiu falando mal, recebendo melhor".</blockquote>
+                    <blockquote>"A empresa está deixando muito a desejar, perdendo bons funcionários para o mercado por conta do salário".</blockquote>
+                </div>
+            </div>
+
+            <h3>Ponto Crítico #1: A Crise de Confiança</h3>
+            <p>A confiança na palavra da gestão é o pilar mais abalado. Problemas recorrentes com pagamentos e acordos não cumpridos geram desmotivação e um sentimento de injustiça.</p>
+            <ul>
+                <li><strong>Promessas não Cumpridas:</strong> Múltiplos relatos de acordos verbais sobre aumento salarial, bônus e pagamento de cursos (T-HUET) que não foram honrados.</li>
+                <li><strong>A Política do Vale-Alimentação:</strong> A queixa mais universal. O corte do benefício durante o período de embarque é visto como uma penalidade.</li>
+                <li><strong>Desconfiança Proativa:</strong> Um colaborador experiente admite não entregar seu certificado técnico para "não ter mais atribuições e não receber por isso".</li>
+            </ul>
+
+            <h3>Ponto Crítico #2: O Custo da Desorganização</h3>
+            <p>A falta de processos claros e uma comunicação intersetorial "quebrada" são os maiores gargalos de eficiência, impactando a qualidade do serviço ao cliente.</p>
+            <ul>
+                <li><strong>Bases Remotas Isoladas:</strong> As operações de Açu e Rio das Ostras sentem-se como "ilhas" abandonadas, lutando por recursos que "não chegam nunca" ou "sempre vem errado".</li>
+                <li><strong>Comunicação "Péssima":</strong> A comunicação entre os setores é o ponto de pior avaliação geral. É descrita como "inexistente" e "muito falha".</li>
+                <li><strong>Hierarquia Confusa:</strong> Colaboradores da operação relatam não saber quem é seu chefe direto, recebendo ordens de múltiplas pessoas.</li>
+            </ul>
+
+             <h3>Ponto Crítico #3: A Falta de um Futuro Claro</h3>
+            <p>A empresa não oferece uma visão de futuro para seus colaboradores. A ausência de ferramentas básicas de RH impede o desenvolvimento e a retenção de talentos.</p>
+            <ul>
+                <li><strong>"Não existe Plano de Carreira":</strong> A frase mais repetida em quase todos os setores, dos analistas à operação.</li>
+                <li><strong>Cultura sem Feedback:</strong> Colaboradores afirmam não receber nenhum tipo de feedback formal sobre seu desempenho.</li>
+                <li><strong>Estagnação e Desvalorização:</strong> Profissionais qualificados sentem que, após anos na empresa, não há para onde crescer, o que leva à desmotivação.</li>
+            </ul>
+        </section>
+
+        <!-- Módulo 2: Ferramenta de Análise (Para Gestores) -->
+        <section>
+            <h2>Módulo 2: Ferramenta de Análise (Para Gestores)</h2>
+            
+            <h3>Panorama Geral: Ranking de Satisfação</h3>
+            <p>Como cada setor avalia a empresa como um "Bom Lugar para se Trabalhar"?</p>
+            <div class="chart-container">
+                <canvas id="satisfactionChart"></canvas>
+            </div>
+
+            <h3>Mapa de Calor: Pontos Fortes e Fracos por Setor</h3>
+            <p>Diagnóstico comparativo por tema. Células em <span style="background-color: #d1495b; color: white; padding: 2px 5px; border-radius: 3px;">vermelho</span> indicam pontos críticos (nota < 6), <span style="background-color: #edae49; color: white; padding: 2px 5px; border-radius: 3px;">amarelo</span> indicam pontos de atenção (nota 6-7.9), e <span style="background-color: #66a182; color: white; padding: 2px 5px; border-radius: 3px;">verde</span> indicam pontos fortes (nota >= 8).</p>
+            <div style="overflow-x:auto;">
+                <div id="heatmapContainer"></div>
+            </div>
+            
+            <h3>Deep Dive: Liderança vs. Comunicação</h3>
+            <p>Comparativo das médias de Liderança ("Relação com o Chefe") e Comunicação ("Comunicação Interna") por setor, evidenciando o principal ponto forte e o principal ponto fraco da empresa.</p>
+            <div class="chart-container">
+                <canvas id="leadershipVsCommsChart"></canvas>
+            </div>
+            
+        </section>
+
+        <!-- Módulo 3: Plano de Ação (Para o RH) -->
+        <section>
+            <h2>Módulo 3: Plano de Ação (Para o RH)</h2>
+
+            <h3>O Mandato do RH: Por Onde Começar?</h3>
+            <p>Com base no feedback unânime dos colaboradores, o RH tem um mandato claro para estruturar os processos de gente, atuando como o principal agente da mudança cultural e de gestão na empresa.</p>
+
+            <h3>Prioridade #1: "Arrastão de Confiança" e Benefícios</h3>
+            <p>Corrigir o básico para restaurar a confiança.</p>
+            <ul>
+                <li><strong>Auditoria de Promessas:</strong> Levantar com a diretoria todos os acordos não cumpridos e criar um plano de ação para cada um.</li>
+                <li><strong>Redesenho da Política de Benefícios:</strong> Apresentar uma nova proposta para a política de Vale-Alimentação que seja clara, justa e competitiva.</li>
+                <li><strong>Padronização de Pagamentos:</strong> Trabalhar com o Financeiro para garantir a consistência no pagamento de adicionais (periculosidade, horas extras).</li>
+            </ul>
+
+            <h3>Prioridade #2: Estruturação de Carreira e Desempenho</h3>
+            <p>Criando um caminho para o futuro.</p>
+             <ul>
+                <li><strong>Plano de Cargos e Salários:</strong> Iniciar o projeto para definir as funções, responsabilidades e faixas salariais de forma clara e transparente.</li>
+                <li><strong>Ciclo de Gestão de Desempenho:</strong> Implementar um processo simples e regular de Avaliação de Desempenho e Feedback, com treinamento para os gestores.</li>
+                <li><strong>Mapa de Carreira:</strong> Desenvolver trilhas de crescimento para as principais funções, mostrando aos colaboradores que há futuro na empresa.</li>
+            </ul>
+
+            <h3>Prioridade #3: Comunicação, Treinamento e Cultura</h3>
+            <p>Reconectando a empresa.</p>
+            <ul>
+                <li><strong>Treinamento de Líderes:</strong> Desenvolver um programa de capacitação para gestores com foco em comunicação e gestão de pessoas.</li>
+                <li><strong>Canais de Comunicação:</strong> Criar e oficializar canais de comunicação interna (reuniões periódicas, DDS com o administrativo, comunicados).</li>
+                <li><strong>Cultura de Reconhecimento:</strong> Criar programas de reconhecimento que vão além do financeiro, como o "Funcionário do Mês".</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>Relatório Gerado em 29 de Julho de 2025.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Função para colorir a tabela de heatmap dinamicamente
+        function colorHeatmap() {
+            const cells = document.querySelectorAll('.heatmap-table td');
+            cells.forEach(cell => {
+                // Ignora a primeira célula de cada linha (o nome do setor)
+                if (cell.cellIndex > 0) {
+                    const value = parseFloat(cell.innerText);
+                    if (!isNaN(value)) {
+                        if (value < 6) {
+                            cell.style.backgroundColor = '#d1495b'; // Vermelho para notas críticas
+                        } else if (value >= 6 && value < 8) {
+                            cell.style.backgroundColor = '#edae49'; // Amarelo para notas de atenção
+                        } else {
+                            cell.style.backgroundColor = '#66a182'; // Verde para notas fortes
+                        }
+                    }
+                }
+            });
+        }
+    
+        // Dados consolidados para os gráficos
+        const sectors = ['RH', 'Engenharia', 'Comercial', 'QSMS', 'Op. Açu', 'Finan.', 'Op. R. Ostras', 'Almox.', 'BI', 'Compras', 'Operações'];
+
+        // GRÁFICO 1: Ranking de Satisfação (Módulo 2)
+        const satisfactionData = {
+            labels: sectors,
+            datasets: [{
+                label: 'Nota Média - "Bom Lugar para se Trabalhar?"',
+                data: [6.0, 8.3, 7.3, 6.0, 8.5, 8.0, 7.5, 5.0, 8.0, 8.0, 7.1],
+                backgroundColor: 'rgba(0, 119, 182, 0.6)',
+                borderColor: 'rgba(0, 119, 182, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        new Chart(document.getElementById('satisfactionChart'), {
+            type: 'bar',
+            data: satisfactionData,
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { x: { beginAtZero: true, max: 10 } },
+                plugins: { legend: { display: false }, title: { display: true, text: 'Satisfação Geral por Setor (Média de 1 a 10)' } }
+            }
+        });
+
+        // TABELA HEATMAP: (Módulo 2)
+        const heatmapData = {
+            headers: ["Setor", "Satisfação", "Clima", "Respeito", "Liderança", "Apoio", "Crescimento", "Reconhec.", "Comunicação", "Metas"],
+            rows: [
+                { sector: 'RH', values: [6.0, 7.5, 7.0, 9.5, 9.0, 7.0, 6.0, 2.0, 1.5] },
+                { sector: 'Engenharia', values: [8.3, 8.8, 8.8, 9.5, 9.2, 6.0, 8.4, 5.7, 7.5] },
+                { sector: 'Comercial', values: [7.3, 7.3, 7.3, 9.0, 9.7, 4.0, 5.7, 4.7, 6.0] },
+                { sector: 'QSMS', values: [6.0, 8.0, 9.0, 10.0, 5.0, 1.0, 7.0, 10.0, 7.0] },
+                { sector: 'Op. Açu', values: [8.5, 9.0, 8.5, 9.2, 6.2, 8.2, 8.8, 4.2, 7.4] },
+                { sector: 'Financeiro', values: [8.0, 8.0, 7.0, 8.0, 8.0, 5.0, 5.0, 5.0, 5.0] },
+                { sector: 'Op. R. Ostras', values: [7.5, 8.0, 7.5, 8.0, 5.5, 8.0, 7.5, 5.5, 7.0] },
+                { sector: 'Almoxarife', values: [5.0, 3.0, 8.0, 5.0, 8.0, 7.0, 5.0, 3.0, 3.0] },
+                { sector: 'BI', values: [8.0, 10.0, 10.0, 10.0, 9.0, 5.0, 10.0, 3.0, 6.0] },
+                { sector: 'Compras', values: [8.0, 8.5, 8.5, 9.5, 9.5, 8.5, 7.0, 5.0, 4.5] },
+                { sector: 'Operações', values: [7.1, 6.2, 6.8, 8.4, 7.5, 6.1, 7.8, 5.0, 5.2] }
+            ]
+        };
+        
+        let tableHTML = '<table class="heatmap-table"><thead><tr>';
+        heatmapData.headers.forEach(header => tableHTML += `<th>${header}</th>`);
+        tableHTML += '</tr></thead><tbody>';
+        heatmapData.rows.forEach(row => {
+            tableHTML += `<tr><td>${row.sector}</td>`;
+            row.values.forEach(value => tableHTML += `<td>${value.toFixed(1)}</td>`);
+            tableHTML += '</tr>';
+        });
+        tableHTML += '</tbody></table>';
+        document.getElementById('heatmapContainer').innerHTML = tableHTML;
+        colorHeatmap(); // Chama a função para colorir a tabela após criá-la
+
+        // GRÁFICO 3: Liderança vs. Comunicação (Módulo 2)
+         const leadershipVsCommsData = {
+            labels: sectors,
+            datasets: [{
+                label: 'Liderança (Relação com Chefe)',
+                data: [9.5, 9.5, 9.0, 10.0, 9.2, 8.0, 8.0, 5.0, 10.0, 9.5, 8.4],
+                backgroundColor: 'rgba(102, 161, 130, 0.8)', // Verde
+            }, {
+                label: 'Comunicação Interna',
+                data: [2.0, 5.7, 4.7, 10.0, 4.2, 5.0, 5.5, 3.0, 3.0, 5.0, 5.0],
+                backgroundColor: 'rgba(209, 73, 91, 0.8)', // Vermelho
+            }]
+        };
+
+        new Chart(document.getElementById('leadershipVsCommsChart'), {
+            type: 'bar',
+            data: leadershipVsCommsData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { y: { beginAtZero: true, max: 10 } },
+                plugins: { title: { display: true, text: 'Comparativo: Liderança vs. Comunicação por Setor' } }
+            }
+        });
+    </script>
+</body>
+</html>
